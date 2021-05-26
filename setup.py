@@ -10,7 +10,7 @@ if python_version.major < 3:
 setup(
   name='fastsearch',  
   packages=['fastsearch'],  
-  version='0.0.1', 
+  version='0.0.2', 
   license='BSD-3-Clause and Public-Domain',
   description='a Python package for fast search entirely in-memory based',
   author='Eyal Paz',
@@ -29,7 +29,6 @@ setup(
     'Programming Language :: Python :: 3',      
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.8'
   ],
 )
