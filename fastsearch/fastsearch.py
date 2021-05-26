@@ -6,11 +6,12 @@ class FastSearch:
         self.ngram_length = ngram_length
         self.A = ahocorasick.Automaton()
 
-    def add_sentence(self, sentence, descriptor, selection_start=0, selection_end=0):
+    def add_sentence(self, sentence, descriptor, selection_start=0, selection_end=None):
         words = self.delim_pattern.split(sentence)
-        for word in words:
+        selection_end = len(words) if not selection_end else selection_end
+        for word in words[selection_start: selection_end]:
             if len(word) >= self.ngram_length:
-                for i in range(selection_start, len(word) - self.ngram_length + 1 - selection_end):
+                for i in range(0, len(word) - self.ngram_length + 1):
                     ngram = word[i: i + self.ngram_length]
                     self.A.add_word(ngram, descriptor)
     
@@ -21,7 +22,7 @@ class FastSearch:
         matches = []
         for end_index, descriptor in self.A.iter(text):
             start_index = end_index - self.ngram_length + 1
-            print(text, start_index, descriptor)
+            # print(text, start_index, descriptor)
             matches.append(descriptor)
             if one_match:
                 break
